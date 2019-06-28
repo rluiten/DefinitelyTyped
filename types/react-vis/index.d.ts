@@ -67,14 +67,14 @@ declare module 'react-vis' {
 
     export type RVTickFormat = (tick: any) => string;
 
-    export type RVItemsFormat = (values: Array<any>) => Array<{ value: any; title: any }>;
-    export type RVTitleFormat = (values: Array<any>) => { value: any; title: any } | undefined;
+    export type RVItemsFormat = (values: any[]) => Array<{ value: any; title: any }>;
+    export type RVTitleFormat = (values: any[]) => { value: any; title: any } | undefined;
 
     export type RVHintFormat = (value: { [key: string]: any }) => Array<{ value: any; title: any }>;
 
-    export type RVPadAngle = (...args: Array<any>) => number | undefined;
+    export type RVPadAngle = (...args: any[]) => number | undefined;
 
-    export type RVSearchFn = (items: Array<any>, searchText: string) => Array<any>;
+    export type RVSearchFn = (items: any[], searchText: string) => any[];
 
     export type RVSortFn<T extends AbstractSeriesPoint> = (a: T, b: T, accessor: (val: T) => number) => number;
 
@@ -200,7 +200,7 @@ declare module 'react-vis' {
         opacity?: number;
         color?: string | number;
         style: CSSProperties;
-        children: Array<TreemapPoint>;
+        children: TreemapPoint[];
     }
 
     export interface ParallelCoordinatesPoint extends AbstractSeriesPoint {
@@ -231,7 +231,7 @@ declare module 'react-vis' {
         label?: string;
         labelStyle?: CSSProperties;
         dontRotateLabel?: boolean;
-        children?: Array<SunburstPoint>;
+        children?: SunburstPoint[];
     }
 
     export interface VoronoiPoint extends AbstractSeriesPoint {
@@ -282,25 +282,25 @@ declare module 'react-vis' {
     export const ScaleUtils: {
         extractScalePropsFromProps: (
             props: AbstractSeriesProps<AbstractSeriesPoint>,
-            attributes: Array<string>
+            attributes: string[]
         ) => { [key: string]: any };
         getAttributeScale: (props: AbstractSeriesProps<AbstractSeriesPoint>, attr: string) => any;
         getAttributeFunctor: (props: AbstractSeriesProps<AbstractSeriesPoint>, attr: string) => any;
         getAttr0Functor: (props: AbstractSeriesProps<AbstractSeriesPoint>, attr: string) => any;
         getAttributeValue: (props: AbstractSeriesProps<AbstractSeriesPoint>, attr: string) => any;
-        getDomainByAccessor: (allData: Array<any>, accessor: Function, accessor0: Function, type: string) => Array<any>;
+        getDomainByAccessor: (allData: any[], accessor: Function, accessor0: Function, type: string) => any[];
         getFontColorFromBackground: (background?: string | null) => string | null;
         getMissingScaleProps: (
             props: AbstractSeriesProps<AbstractSeriesPoint>,
-            data: Array<any>,
-            attributes: Array<string>
+            data: any[],
+            attributes: string[]
         ) => { [key: string]: any };
         getOptionalScaleProps: (props: AbstractSeriesProps<AbstractSeriesPoint>) => { [key: string]: any };
         getScaleObjectFromProps: (props: AbstractSeriesProps<AbstractSeriesPoint>, attr: string) => any;
         getScalePropTypesByAttribute: (attr: string) => { [key: string]: any };
         getXYPlotValues: (
             props: AbstractSeriesProps<AbstractSeriesPoint>,
-            children: Array<ReactChild>
+            children: ReactChild[]
         ) => { [key: string]: any };
         literalScale: (defaultValue: any) => any;
     };
@@ -348,7 +348,7 @@ declare module 'react-vis' {
         colorBaseValue?: T['color'];
         width?: number;
         height?: number;
-        data?: Array<T | Array<any>>;
+        data?: Array<T | any[]>;
         onValueMouseOver?: RVValueEventHandler<T>;
         onValueMouseOut?: RVValueEventHandler<T>;
         onValueClick?: RVValueEventHandler<T>;
@@ -364,7 +364,7 @@ declare module 'react-vis' {
             | string
             | {
                   stiffness?: number;
-                  nonAnimatedProps?: Array<string>;
+                  nonAnimatedProps?: string[];
                   damping?: number;
               }
             | boolean;
@@ -440,15 +440,15 @@ declare module 'react-vis' {
         height?: number;
         top?: number;
         left?: number;
-        rRange?: Array<number>;
+        rRange?: number[];
         style?: CSSProperties;
-        tickValues?: Array<number>;
+        tickValues?: number[];
         tickTotal?: number;
         animation?:
             | string
             | {
                   stiffness?: number;
-                  nonAnimatedProps?: Array<string>;
+                  nonAnimatedProps?: string[];
                   damping?: number;
               }
             | boolean;
@@ -498,7 +498,7 @@ declare module 'react-vis' {
     export class CustomSVGSeries extends AbstractSeries<CustomSVGSeriesProps> {}
 
     export interface DecorativeAxisProps extends AbstractSeriesProps<DecorativeAxisPoint> {
-        axisDomain: Array<number>;
+        axisDomain: number[];
         axisEnd: {
             x?: number | string;
             y?: number | string;
@@ -533,7 +533,7 @@ declare module 'react-vis' {
             | string
             | {
                   stiffness?: number;
-                  nonAnimatedProps?: Array<string>;
+                  nonAnimatedProps?: string[];
                   damping?: number;
               }
             | boolean;
@@ -609,7 +609,7 @@ declare module 'react-vis' {
             | string
             | {
                   stiffness?: number;
-                  nonAnimatedProps?: Array<string>;
+                  nonAnimatedProps?: string[];
                   damping?: number;
               }
             | boolean;
@@ -695,7 +695,7 @@ declare module 'react-vis' {
             | string
             | {
                   stiffness?: number;
-                  nonAnimatedProps?: Array<string>;
+                  nonAnimatedProps?: string[];
                   damping?: number;
               }
             | boolean;
@@ -716,8 +716,8 @@ declare module 'react-vis' {
 
     export interface VoronoiProps {
         className?: string;
-        extent?: Array<Array<number>>;
-        nodes: Array<VoronoiPoint>;
+        extent?: Array<number[]>;
+        nodes: VoronoiPoint[];
         onBlur?: RVFocusEventHandler;
         onClick?: RVMouseEventHandler;
         onHover?: RVMouseEventHandler;
@@ -749,7 +749,7 @@ declare module 'react-vis' {
             | string
             | {
                   stiffness?: number;
-                  nonAnimatedProps?: Array<string>;
+                  nonAnimatedProps?: string[];
                   damping?: number;
               }
             | boolean;
@@ -918,18 +918,18 @@ declare module 'react-vis' {
             | string
             | {
                   stiffness?: number;
-                  nonAnimatedProps?: Array<string>;
+                  nonAnimatedProps?: string[];
                   damping?: number;
               }
             | boolean;
         brushing?: boolean;
         className?: string;
         colorType?: string;
-        colorRange?: Array<string>;
-        data: Array<ParallelCoordinatesPoint>;
+        colorRange?: string[];
+        data: ParallelCoordinatesPoint[];
         domains: Array<{
             name: string;
-            domain: Array<number>;
+            domain: number[];
             tickFormat?: RVTickFormat;
         }>;
         height: number;
@@ -957,17 +957,17 @@ declare module 'react-vis' {
             | string
             | {
                   stiffness?: number;
-                  nonAnimatedProps?: Array<string>;
+                  nonAnimatedProps?: string[];
                   damping?: number;
               }
             | boolean;
         className?: string;
         colorType?: string;
-        colorRange?: Array<string>;
-        data: Array<RadarChartPoint>;
+        colorRange?: string[];
+        data: RadarChartPoint[];
         domains: Array<{
             name: string;
-            domain: Array<number>;
+            domain: number[];
             tickFormat?: RVTickFormat;
         }>;
         height: number;
@@ -1001,7 +1001,7 @@ declare module 'react-vis' {
             | string
             | {
                   stiffness?: number;
-                  nonAnimatedProps?: Array<string>;
+                  nonAnimatedProps?: string[];
                   damping?: number;
               }
             | boolean;
@@ -1062,7 +1062,7 @@ declare module 'react-vis' {
               }
             | number;
         nodePadding?: number;
-        nodes: Array<SankeyPoint>;
+        nodes: SankeyPoint[];
         nodeWidth?: number;
         onValueMouseOver?: RVValueEventHandler<SankeyPoint>;
         onValueClick?: RVValueEventHandler<SankeyPoint>;
@@ -1084,7 +1084,7 @@ declare module 'react-vis' {
             | string
             | {
                   stiffness?: number;
-                  nonAnimatedProps?: Array<string>;
+                  nonAnimatedProps?: string[];
                   damping?: number;
               }
             | boolean;
@@ -1110,7 +1110,7 @@ declare module 'react-vis' {
             | string
             | {
                   stiffness?: number;
-                  nonAnimatedProps?: Array<string>;
+                  nonAnimatedProps?: string[];
                   damping?: number;
               }
             | boolean;
@@ -1153,7 +1153,7 @@ declare module 'react-vis' {
             | string
             | {
                   stiffness?: number;
-                  nonAnimatedProps?: Array<string>;
+                  nonAnimatedProps?: string[];
                   damping?: number;
               }
             | boolean;
@@ -1189,7 +1189,7 @@ declare module 'react-vis' {
             | string
             | {
                   stiffness?: number;
-                  nonAnimatedProps?: Array<string>;
+                  nonAnimatedProps?: string[];
                   damping?: number;
               }
             | boolean;
@@ -1225,7 +1225,7 @@ declare module 'react-vis' {
             | string
             | {
                   stiffness?: number;
-                  nonAnimatedProps?: Array<string>;
+                  nonAnimatedProps?: string[];
                   damping?: number;
               }
             | boolean;
