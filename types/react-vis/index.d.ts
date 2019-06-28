@@ -87,7 +87,7 @@ export interface LineMarkSeriesPoint extends AbstractSeriesPoint {
     size?: string | number;
 }
 
-export interface MarkSeriesPoint extends AbstractSeriesPoint {
+export interface MarkSeriesPoint {
     x: string | number | Date;
     y: string | number | Date;
     color?: string | number;
@@ -696,12 +696,12 @@ export interface LineSeriesCanvasProps extends AbstractSeriesProps<LineSeriesPoi
 }
 export class LineSeriesCanvas extends AbstractSeries<LineSeriesCanvasProps> {}
 
-export interface MarkSeriesProps extends AbstractSeriesProps<MarkSeriesPoint> {
-    getNull?: RVGetNull<MarkSeriesPoint>;
+export interface MarkSeriesProps<T extends MarkSeriesPoint> extends AbstractSeriesProps<T> {
+    getNull?: RVGetNull<T>;
     strokeWidth?: number;
+    size?: number;
 }
-
-export class MarkSeries extends AbstractSeries<MarkSeriesProps> {}
+export class MarkSeries<T extends MarkSeriesPoint> extends AbstractSeries<MarkSeriesProps<T>> {}
 
 export interface MarkSeriesCanvasProps extends AbstractSeriesProps<MarkSeriesPoint> {}
 export class MarkSeriesCanvas extends AbstractSeries<MarkSeriesCanvasProps> {}
