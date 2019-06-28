@@ -18,6 +18,8 @@ import {
     CSSProperties,
 } from 'react';
 
+export {};
+
 export interface AbstractSeriesPoint {
     [key: string]: any;
 }
