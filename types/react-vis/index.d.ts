@@ -259,6 +259,8 @@ export function makeHeightFlexible<T>(component: ComponentType<T>): ComponentTyp
 
 export function makeWidthFlexible<T>(component: ComponentType<T>): ComponentType<Pick<T, Exclude<keyof T, 'width'>>>;
 
+type TVGetTickValues = (scale: any, tickTotal: number, tickValues: any[]) => any[];
+
 export const AxisUtils: {
     DIRECTION: {
         VERTICAL: 'vertical';
@@ -273,7 +275,11 @@ export const AxisUtils: {
         HORIZONTAL: 'horizontal';
     };
     getTicksTotalFromSize: (size: number) => number;
-    getTickValues: (scale: Function, tickTotal: number, tickValues?: Array<number | string>) => Array<number | string>;
+    getTickValues: (
+        scale: TVGetTickValues,
+        tickTotal: number,
+        tickValues?: Array<number | string>
+    ) => Array<number | string>;
 };
 
 export const ScaleUtils: {
