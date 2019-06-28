@@ -511,7 +511,7 @@ export class Crosshair extends PureComponent<CrosshairProps> {}
 
 export interface CustomSVGSeriesProps extends AbstractSeriesProps<CustomSVGSeriesPoint> {
     className?: string;
-    customComponent?: string | Function;
+    customComponent?: string | React.FunctionComponentElement<any>;
     marginLeft?: number;
     marginTop?: number;
     size?: number;
@@ -671,7 +671,7 @@ export class LabelSeries extends AbstractSeries<LabelSeriesProps> {}
 
 export interface LineMarkSeriesProps extends AbstractSeriesProps<LineMarkSeriesPoint> {
     strokeStyle?: 'dashed' | 'solid';
-    curve?: string | Function;
+    curve?: string | ((curve: any) => any);
     getNull?: RVGetNull<LineMarkSeriesPoint>;
     lineStyle?: CSSProperties;
     markStyle?: CSSProperties;
@@ -685,7 +685,7 @@ export class LineMarkSeriesCanvas extends AbstractSeries<LineMarkSeriesCanvasPro
 
 export interface LineSeriesProps extends AbstractSeriesProps<LineSeriesPoint> {
     strokeStyle?: 'dashed' | 'solid';
-    curve?: string | Function;
+    curve?: string | ((curve: any) => any);
     getNull?: RVGetNull<LineSeriesPoint>;
 }
 
@@ -758,8 +758,8 @@ export interface VoronoiProps {
     onHover?: RVMouseEventHandler;
     onMouseDown?: RVMouseEventHandler;
     onMouseUp?: RVMouseEventHandler;
-    x?: Function;
-    y?: Function;
+    x?: (o: object) => number; // Function;
+    y?: (o: object) => number; // Function;
 }
 
 export const Voronoi: SFC<VoronoiProps>;
@@ -1081,7 +1081,9 @@ export interface RadialChartProps {
     onValueMouseOut?: RVValueEventHandler<RadialChartPoint>;
     showLabels?: boolean;
     style?: CSSProperties;
-    subLabel?: Function;
+    // This will need to be revisited when updated in react-vis
+    // see https://github.com/uber/react-vis/issues/1211
+    subLabel?: (datapoint: object) => string; // Function;
     width: number;
 }
 
