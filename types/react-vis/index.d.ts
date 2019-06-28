@@ -36,20 +36,20 @@ declare module 'react-vis' {
 
     type RVValueEventHandler<T extends AbstractSeriesPoint> = (datapoint: T, event: MouseEvent<HTMLElement>) => void;
 
-    type RVNearestXData<T extends AbstractSeriesPoint> = {
+    interface RVNearestXData<T extends AbstractSeriesPoint> {
         event: MouseEvent<HTMLElement>;
         innerX: T['x'];
         index: number;
-    };
+    }
 
     type RVNearestXEventHandler<T extends AbstractSeriesPoint> = (datapoint: T, data: RVNearestXData<T>) => void;
 
-    type RVNearestXYData<T extends AbstractSeriesPoint> = {
+    interface RVNearestXYData<T extends AbstractSeriesPoint> {
         event: MouseEvent<HTMLElement>;
         innerX: T['x'];
         innerY: T['y'];
         index: number;
-    };
+    }
 
     type RVNearestXYEventHandler<T extends AbstractSeriesPoint> = (datapoint: T, data: RVNearestXYData<T>) => void;
 
