@@ -11,6 +11,7 @@ declare module 'react-vis' {
         ReactChild,
         ReactNode,
         SFC,
+        FocusEventHandler,
         MouseEventHandler,
         TouchEventHandler,
         WheelEventHandler,
@@ -22,6 +23,7 @@ declare module 'react-vis' {
         [key: string]: any;
     }
 
+    export type RVFocusEventHandler = FocusEventHandler<HTMLElement>;
     export type RVMouseEventHandler = MouseEventHandler<HTMLElement>;
     export type RVTouchEventHandler = TouchEventHandler<HTMLElement>;
     export type RVWheelEventHandler = WheelEventHandler<HTMLElement>;
@@ -297,7 +299,7 @@ declare module 'react-vis' {
 
     export interface LineSeriesProps extends AbstractSeriesProps<LineSeriesPoint> {
         strokeStyle?: 'dashed' | 'solid'; //default: 'solid'
-        curve?: string | Function; //default: null
+        curve?: string | Function;
         getNull?: RVGetNull<LineSeriesPoint>;
     }
     export class LineSeries extends AbstractSeries<LineSeriesProps> {}
@@ -379,8 +381,9 @@ declare module 'react-vis' {
     }
     export class ContourSeries extends AbstractSeries<ContourSeriesProps> {}
 
+    export type CustomSVGSeriesComponent = (customComponent: any, positionInPixels: any, style: CSSProperties) => any;
     export interface CustomSVGSeriesProps extends AbstractSeriesProps<CustomSVGSeriesPoint> {
-        customComponent?: string | Function; //default: 'circle'
+        customComponent?: string | CustomSVGSeriesComponent;
         marginLeft?: number;
         marginTop?: number;
     }
@@ -418,7 +421,7 @@ declare module 'react-vis' {
 
     export interface LineMarkSeriesProps extends AbstractSeriesProps<LineMarkSeriesPoint> {
         strokeStyle?: 'dashed' | 'solid'; //default: 'solid'
-        curve?: string | Function; //default: null
+        curve?: string | Function;
         getNull?: RVGetNull<LineMarkSeriesPoint>;
         lineStyle?: CSSProperties; //default: {}
         markStyle?: CSSProperties; //default: {}
@@ -428,6 +431,12 @@ declare module 'react-vis' {
     export interface LineMarkSeriesCanvasProps extends AbstractSeriesProps<LineMarkSeriesPoint> {}
     export class LineMarkSeriesCanvas extends AbstractSeries<LineMarkSeriesCanvasProps> {}
 
+    export interface HintContent {
+        title: string;
+        value: any;
+        [customContent: string]: any; // Refer to Yevhen for this one.
+    }
+    export type HintFormat = (dataPoint: any) => HintContent[];
     export interface HintProps {
         marginTop?: number;
         marginLeft?: number;
@@ -435,7 +444,7 @@ declare module 'react-vis' {
         innerHeight?: number;
         scales?: { [key: string]: any };
         value?: { [key: string]: any };
-        format?: Function;
+        format?: HintFormat;
         style?: CSSProperties; //default: {}
         align?: {
             horizontal?: 'auto' | 'left' | 'right' | 'leftEdge' | 'rightEdge';
@@ -462,6 +471,7 @@ declare module 'react-vis' {
     }
     export class Borders<T = any> extends PureComponent<BordersProps & T> {}
 
+    export type CrosshairFormat = (data: any[]) => HintContent[];
     export interface CrosshairProps {
         className?: string;
         values?: Array<any>;
@@ -471,8 +481,8 @@ declare module 'react-vis' {
         marginLeft?: number;
         marginTop?: number;
         orientation?: 'left' | 'right';
-        itemsFormat?: Function;
-        titleFormat?: Function;
+        itemsFormat?: CrosshairFormat;
+        titleFormat?: CrosshairFormat;
         style?: {
             line?: CSSProperties;
             title?: CSSProperties;
@@ -721,17 +731,18 @@ declare module 'react-vis' {
     }
     export const HorizontalGridLines: SFC<HorizontalGridLinesProps>;
 
+    export type VoronoiAccessor = (data: any) => number;
     export interface VoronoiProps {
         className?: string; //default: ''
         extent: Array<Array<number>>;
         nodes: Array<VoronoiPoint>;
-        onBlur?: Function;
+        onBlur?: RVFocusEventHandler;
         onClick?: RVMouseEventHandler;
-        onHover?: Function;
+        onHover?: RVMouseEventHandler;
         onMouseDown?: RVMouseEventHandler;
         onMouseUp?: RVMouseEventHandler;
-        x?: Function;
-        y?: Function;
+        x?: VoronoiAccessor;
+        y?: VoronoiAccessor;
     }
     export const Voronoi: SFC<VoronoiProps>;
 
