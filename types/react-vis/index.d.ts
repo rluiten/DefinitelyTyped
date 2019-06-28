@@ -1,3 +1,8 @@
+// Type definitions for react-vis 1.11.7
+// Project: https://github.com/uber/react-vis
+// Definitions by: Tyler Miller <https://github.com/fstylermiller>
+// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
+// TypeScript Version: 3.5
 declare module 'react-vis' {
     import {
         Component,
