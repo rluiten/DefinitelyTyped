@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { HorizontalGridLines, XYPlot, XAxis, YAxis, LineSeries, MarkSeries } from 'react-vis';
+import { HorizontalGridLines, XYPlot, XAxis, YAxis, LineSeries, MarkSeries, LineMarkSeries } from 'react-vis';
 
 export class CustomLineSeries extends React.Component {
     render() {
@@ -14,34 +14,23 @@ export class CustomLineSeries extends React.Component {
     }
 }
 
-export class DataPointTypeInferenceToHandler extends React.Component {
-    render() {
-        return 'dummy';
-    }
+// When can address why typescript@next reports error got `any` expected `string`
+// is fixed restore `$ExpectType string` to type of name
+const d = [{ x: 1, y: 10, name: 'Name' }];
 
-    renderMarkSeriesInferredType() {
-        return (
-            <MarkSeries
-                data={[{ x: 1, y: 10, name: 'Name' }]}
-                onValueClick={({ x, y, name }) => {
-                    return name;
-                }}
-            />
-        );
-    }
+const seriesInferred01 = () => (
+    <MarkSeries
+        data={d}
+        onValueClick={({ name }) => {
+            // $ExpectType string
+            return name;
+        }}
+    />
+);
+const seriesInferred02 = () => <LineMarkSeries data={d} onValueClick={({ name }) => name} />;
 
-    narkSeriesErrorInferredType() {
-        return (
-            <MarkSeries
-                data={[{ x: 1, y: 10, name: 'Name' }]}
-                // $ExpectError
-                onValueClick={({ x, y, banana }) => {
-                    return 'dummy';
-                }}
-            />
-        );
-    }
+// $ExpectError
+const handlerField01 = () => <MarkSeries data={d} onValueClick={({ xyz }) => 'x'} />;
 
-    // $ExpectError
-    markSeriesMissingFieldInData = () => <MarkSeries data={[{ x: 1 }]} />;
-}
+// $ExpectError
+const dataField01 = () => <MarkSeries data={[{ x: 1 }]} />;
