@@ -1,5 +1,7 @@
-import * as React from 'react';
+﻿import * as React from 'react';
 import { HorizontalGridLines, XYPlot, XAxis, YAxis, LineSeries } from 'react-vis';
+
+import ContinuousColorLegend from './legends/continuous-color-legend';
 
 class CustomLineSeries extends React.Component {
     render() {
