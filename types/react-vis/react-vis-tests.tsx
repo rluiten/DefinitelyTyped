@@ -31,7 +31,7 @@ export class DataPointTypeInferenceToHandler extends React.Component {
         );
     }
 
-    renderMarkSeriesErrorInferredType() {
+    narkSeriesErrorInferredType() {
         return (
             <MarkSeries
                 data={[{ x: 1, y: 10, name: 'Name' }]}
@@ -42,4 +42,7 @@ export class DataPointTypeInferenceToHandler extends React.Component {
             />
         );
     }
+
+    // $ExpectError
+    markSeriesMissingFieldInData = () => <MarkSeries data={[{ x: 1 }]} />;
 }
