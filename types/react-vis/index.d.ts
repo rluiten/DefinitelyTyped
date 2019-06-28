@@ -1,4 +1,4 @@
-// Type definitions for react-vis 1.11.7
+// Type definitions for react-vis 1.11
 // Project: https://github.com/uber/react-vis
 // Definitions by: Tyler Miller <https://github.com/fstylermiller>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -729,7 +729,7 @@ declare module 'react-vis' {
 
     interface VoronoiProps {
         className?: string;
-        extent?: Array<number[]>;
+        extent?: number[][];
         nodes: VoronoiPoint[];
         onBlur?: RVFocusEventHandler;
         onClick?: RVMouseEventHandler;
