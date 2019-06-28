@@ -24,7 +24,6 @@ export class DataPointTypeInferenceToHandler extends React.Component {
             <MarkSeries
                 data={[{ x: 1, y: 10, name: 'Name' }]}
                 onValueClick={({ x, y, name }) => {
-                    // $ExpectType string
                     return name;
                 }}
             />

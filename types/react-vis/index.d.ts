@@ -2,7 +2,7 @@
 // Project: https://github.com/uber/react-vis
 // Definitions by: Tyler Miller <https://github.com/fstylermiller>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-// TypeScript Version: 3.5
+// TypeScript Version: 2.8
 import {
     Component,
     ComponentType,
