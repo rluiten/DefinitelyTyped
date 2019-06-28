@@ -237,9 +237,20 @@ declare module 'react-vis' {
         y: number;
     }
 
-    interface DecorativeAxisPoint extends AbstractSeriesPoint {}
-    interface RadarChartPoint extends AbstractSeriesPoint {}
-    interface HighlightPoint extends AbstractSeriesPoint {}
+    interface DecorativeAxisPoint extends AbstractSeriesPoint {
+        x: number;
+        y: number;
+    }
+
+    interface RadarChartPoint extends AbstractSeriesPoint {
+        x: number;
+        y: number;
+    }
+
+    interface HighlightPoint extends AbstractSeriesPoint {
+        x: number;
+        y: number;
+    }
 
     function makeVisFlexible<T>(
         component: ComponentType<T>
