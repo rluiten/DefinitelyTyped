@@ -13,4 +13,3 @@ class CustomLineSeries extends React.Component {
         );
     }
 }
-
