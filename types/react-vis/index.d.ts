@@ -282,6 +282,14 @@ export const AxisUtils: {
     ) => Array<number | string>;
 };
 
+// manually created may not be perfect
+export type RVGetDomainByAccessor = <T extends {}>(
+    allData: T[],
+    accessor: (x: T) => any, // is probably, number | string,
+    accessor0: (x: T) => any, // is probably, number | string,
+    type: 'linear' | 'ordinal' | 'category' | 'literal' | 'log' | 'time' | 'time-utc'
+) => void;
+
 export const ScaleUtils: {
     extractScalePropsFromProps: (
         props: AbstractSeriesProps<AbstractSeriesPoint>,
@@ -291,7 +299,7 @@ export const ScaleUtils: {
     getAttributeFunctor: (props: AbstractSeriesProps<AbstractSeriesPoint>, attr: string) => any;
     getAttr0Functor: (props: AbstractSeriesProps<AbstractSeriesPoint>, attr: string) => any;
     getAttributeValue: (props: AbstractSeriesProps<AbstractSeriesPoint>, attr: string) => any;
-    getDomainByAccessor: (allData: any[], accessor: Function, accessor0: Function, type: string) => any[];
+    getDomainByAccessor: RVGetDomainByAccessor;
     getFontColorFromBackground: (background?: string | null) => string | null;
     getMissingScaleProps: (
         props: AbstractSeriesProps<AbstractSeriesPoint>,
