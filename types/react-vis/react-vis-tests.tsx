@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { HorizontalGridLines, XYPlot, XAxis, YAxis, LineSeries, MarkSeries } from 'react-vis';
 
-class CustomLineSeries extends React.Component {
+export class CustomLineSeries extends React.Component {
     render() {
         return (
             <XYPlot width={300} height={300}>
@@ -12,12 +12,34 @@ class CustomLineSeries extends React.Component {
             </XYPlot>
         );
     }
+}
 
-    render2() {
+export class DataPointTypeInferenceToHandler extends React.Component {
+    render() {
+        return 'dummy';
+    }
+
+    renderMarkSeriesInferredType() {
         return (
-            <XYPlot width={300} height={300}>
-                <MarkSeries data={[{ x: 1, y: 10, name: 'Name' }]} onValueClick={({ x, y, name }) => ''} />
-            </XYPlot>
+            <MarkSeries
+                data={[{ x: 1, y: 10, name: 'Name' }]}
+                onValueClick={({ x, y, name }) => {
+                    // $ExpectType string
+                    return name;
+                }}
+            />
+        );
+    }
+
+    renderMarkSeriesErrorInferredType() {
+        return (
+            <MarkSeries
+                data={[{ x: 1, y: 10, name: 'Name' }]}
+                // $ExpectError
+                onValueClick={({ x, y, banana }) => {
+                    return 'dummy';
+                }}
+            />
         );
     }
 }
