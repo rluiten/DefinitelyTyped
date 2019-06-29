@@ -22,15 +22,29 @@ const seriesInferred01 = () => (
     <MarkSeries
         data={d}
         onValueClick={({ name }) => {
-            // $ExpectType string
+            // fails$ExpectType string
             return name;
         }}
     />
 );
-const seriesInferred02 = () => <LineMarkSeries data={d} onValueClick={({ name }) => name} />;
+
+const seriesInferred02 = () => (
+    <LineMarkSeries
+        data={d}
+        onValueClick={({ name }) => {
+            return name;
+        }}
+    />
+);
 
 // $ExpectError
 const handlerField01 = () => <MarkSeries data={d} onValueClick={({ xyz }) => 'x'} />;
 
 // $ExpectError
+const handlerField02 = () => <LineMarkSeries data={d} onValueClick={({ xyz }) => 'x'} />;
+
+// $ExpectError
 const dataField01 = () => <MarkSeries data={[{ x: 1 }]} />;
+
+// $ExpectError
+const dataField02 = () => <LineMarkSeries data={[{ x: 1 }]} />;

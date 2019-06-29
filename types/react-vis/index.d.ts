@@ -77,7 +77,7 @@ export interface LineSeriesPoint extends AbstractSeriesPoint {
     color?: string | number;
 }
 
-export interface LineMarkSeriesPoint extends AbstractSeriesPoint {
+export interface LineMarkSeriesPoint {
     x: string | number | Date;
     y: string | number | Date;
     color?: string | number;
@@ -318,6 +318,7 @@ export const ScaleUtils: {
     literalScale: (defaultValue: any) => any;
 };
 
+// Goal to remove extends AbstractSeriesPoint here.
 export interface AbstractSeriesProps<T extends AbstractSeriesPoint> {
     _xValue?: T['x'];
     xDomain?: Array<T['x']>;
@@ -669,15 +670,15 @@ export interface LabelSeriesProps extends AbstractSeriesProps<LabelSeriesPoint> 
 
 export class LabelSeries extends AbstractSeries<LabelSeriesProps> {}
 
-export interface LineMarkSeriesProps extends AbstractSeriesProps<LineMarkSeriesPoint> {
+export interface LineMarkSeriesProps<T extends LineMarkSeriesPoint> extends AbstractSeriesProps<T> {
     strokeStyle?: 'dashed' | 'solid';
     curve?: string | ((curve: any) => any);
-    getNull?: RVGetNull<LineMarkSeriesPoint>;
+    getNull?: RVGetNull<T>;
     lineStyle?: CSSProperties;
     markStyle?: CSSProperties;
 }
 
-export class LineMarkSeries extends AbstractSeries<LineMarkSeriesProps> {}
+export class LineMarkSeries<T extends LineMarkSeriesPoint> extends AbstractSeries<LineMarkSeriesProps<T>> {}
 
 export interface LineMarkSeriesCanvasProps extends AbstractSeriesProps<LineMarkSeriesPoint> {}
 
