@@ -680,9 +680,9 @@ export interface LineMarkSeriesProps<T extends LineMarkSeriesPoint> extends Abst
 
 export class LineMarkSeries<T extends LineMarkSeriesPoint> extends AbstractSeries<LineMarkSeriesProps<T>> {}
 
-export interface LineMarkSeriesCanvasProps extends AbstractSeriesProps<LineMarkSeriesPoint> {}
+export interface LineMarkSeriesCanvasProps<T extends LineMarkSeriesPoint> extends AbstractSeriesProps<T> {}
 
-export class LineMarkSeriesCanvas extends AbstractSeries<LineMarkSeriesCanvasProps> {}
+export class LineMarkSeriesCanvas<T extends LineMarkSeriesPoint> extends AbstractSeries<LineMarkSeriesCanvasProps<T>> {}
 
 export interface LineSeriesProps extends AbstractSeriesProps<LineSeriesPoint> {
     strokeStyle?: 'dashed' | 'solid';
@@ -704,8 +704,8 @@ export interface MarkSeriesProps<T extends MarkSeriesPoint> extends AbstractSeri
 }
 export class MarkSeries<T extends MarkSeriesPoint> extends AbstractSeries<MarkSeriesProps<T>> {}
 
-export interface MarkSeriesCanvasProps extends AbstractSeriesProps<MarkSeriesPoint> {}
-export class MarkSeriesCanvas extends AbstractSeries<MarkSeriesCanvasProps> {}
+export interface MarkSeriesCanvasProps<T extends MarkSeriesPoint> extends AbstractSeriesProps<T> {}
+export class MarkSeriesCanvas<T extends MarkSeriesPoint> extends AbstractSeries<MarkSeriesCanvasProps<T>> {}
 
 export interface PolygonSeriesProps extends AbstractSeriesProps<PolygonSeriesPoint> {}
 export class PolygonSeries extends AbstractSeries<PolygonSeriesProps> {}
