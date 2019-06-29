@@ -32,7 +32,7 @@ const seriesInferred01 = () => (
     <MarkSeries
         data={d}
         onValueClick={({ name }) => {
-            // fails$ExpectType string
+            // $ExpectType string
             return name;
         }}
     />
@@ -42,7 +42,6 @@ const seriesInferred02 = () => (
     <MarkSeriesCanvas
         data={d}
         onValueClick={({ name }) => {
-            // fails$ExpectType string
             return name;
         }}
     />
